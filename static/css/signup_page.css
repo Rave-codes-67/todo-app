@@ -1,0 +1,207 @@
+p {
+    margin: 0;
+    font-family:'Courier New', Courier, monospace;
+}
+
+body {
+    padding-left: 6%;
+}
+
+input[type="text"] {
+    outline: none;
+    box-shadow: none;
+}
+input[type="email"] {
+    outline: none;
+    box-shadow: none;
+}
+input[type="password"] {
+    outline: none;
+    box-shadow: none;
+}
+
+input:active {
+    border: 2px solid black;
+}
+
+.sign-up {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 1200px;
+}
+
+.sign-up-msg-con {
+    width: 800px;
+}
+
+.sign-up-wlc-msg {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 700;
+    font-size: 70px;
+    margin-bottom: 30px;
+    width: 92%;
+    text-align: center;
+}
+
+.sign-up-cta-msg-con {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+}
+
+.sign-up-cta-msg {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    line-height: 30px;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    width: 80%;
+    font-size: 22px;
+    margin-bottom: 45px;
+
+    animation: gradientFlow 6s linear infinite;
+}
+
+.sign-in-instead-con-con {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+}
+
+.sign-in-instead-con {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-instead-btn {
+    background-color: rgba(226, 24, 24, 0.753);
+    color: white;
+    padding: 17px 0;
+    margin: 0;
+    width: 85%;
+    font-weight: bold;
+    font-size: 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button {
+    transition: 0.2s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:active {
+    opacity: 0.4;
+}
+
+.sign-up-form {
+    width: 345px;
+    border-width: 2px;
+    box-shadow: 0 0 25px black;
+    border-style: solid;
+    padding: 17px;
+    padding-top: 0px;
+
+    background-color: rgba(254, 254, 254, 0.244);
+    
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(11, 0, 0, 0.2);
+    border-radius: 12px;
+
+    white-space: nowrap;
+}
+
+input {
+    font-family:'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+.type-input {
+    font-size: 16px;
+    display: block;
+    width: 324px;
+    margin-top: 13px;
+    margin-bottom: 13px;
+    height: 45px;
+    border: 1px solid rgba(128, 128, 128, 0.658);
+    border-radius: 9px;
+    padding-left: 17px;
+}
+
+
+.f-name,
+.l-name {
+    width: 149px;
+    display: inline;
+    padding-left: 17px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.password-con {
+    position: relative;
+}
+
+.password-con button {
+    position: absolute;
+    right: 15px;
+    top: 52%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #777;
+    background-color: #fff;
+    border: none;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    color: #666;
+}
+
+
+.sign-up-button {
+    background-color: rgba(24, 111, 226, 0.753);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    height: 55px;
+    width: 344.5px;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+}
+
+.error-msg-con {
+    background-color: blue;
+}
+
+.create-acc-txt {
+    font-size: 30px;
+    display: block;
+    text-align: center;
+    font-family: Roboto;
+    color: black;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    margin-bottom: 1;
+}
+
+.extra-text {
+    color: black;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+}

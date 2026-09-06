@@ -1,0 +1,204 @@
+
+/* Navbar Starts */
+
+/* Navbar Container */
+
+.navbar {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: 1.7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 30px;
+    background-color: #1e1e24;
+    padding: 1rem 3rem;
+    border-radius: 12px;
+}
+
+/* Logo Styling */
+.nav-logo a {
+    color: #f4bdc3;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Navigation links container */
+.nav-links {
+    display: flex;
+    list-style: none; /* Removes bullet points */
+}
+
+/* Individual list itemts */
+.nav-links li {
+    padding: 0 25px;
+}
+
+/* Styling for the anchor links */
+.nav-links a {
+    color: #f4bdc3;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+/* Hover effects for links */
+.nav-links a:hover {
+    color: #f77f00 /* Changes to a nice accent */
+}
+
+/* Navbar End */
+
+
+main {
+    font-family:'Courier New', Courier, monospace;
+    font-weight: 600;
+    padding: 0px 50px;
+    margin-top: 170px;
+    margin-bottom: 50px;
+}
+
+
+/* Section 1 Start */
+
+.welcome-div {
+    margin-bottom: 60px;
+    padding: 0;
+}
+
+.welcome-text {
+    font-weight: bold;
+    color: white;
+    font-size: 50px;
+    margin-top: 0px;
+    margin-bottom: 16px;
+}
+
+.comp-text {
+    font-size: 65px;
+    color: white;
+    margin: 0;
+}
+
+.tasks {
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 1400px;
+}
+
+.tasks button {
+    font-family:'Courier New', Courier, monospace;
+    background-color: #8f0513;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 50px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tasks button:hover {
+    background-color: #1e1e24;
+}
+
+.todo-text-con {
+    background-color: #1e1e24;
+    padding: 10px 0;
+    border-radius: 20px 20px 0 0;
+}
+
+.todo-text {
+    text-align: center;
+    font-family: Arial;
+    font-size: 60px;
+    font-weight: bolder;
+    color: white;
+    margin: 0;
+}
+
+
+/* Section 1 Ends */
+
+
+
+/* Section 2 Starts*/
+
+table {
+    font-size: 20px;
+    width: 100%;
+    background-color:white;
+    margin: 0px;
+    margin-top: 25px;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0px;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 25px;
+    box-shadow: 0px 0px 10px black;
+}
+
+tr {
+    font-size: 25px;
+    font-weight: 600px;
+    box-shadow: 0px 0px 3px 0px black;
+}
+
+th {
+    background-color: rgb(212, 212, 212);
+}
+
+td {
+    font-size: 20px;
+}
+
+th, td {
+    border-right: 3px solid grey;
+    margin: 20px;
+    padding: 20px 0;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+    width: 5%;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 16.5%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: 50%;
+}
+th:nth-child(4),
+td:nth-child(4) {
+    width: 20%;
+}
+th:nth-child(5),
+td:nth-child(5) {
+    width: 8.5%;
+}
+
+
+.complete {
+    background-color: rgb(0, 176, 50);
+    color: white;
+}
+
+.overtime {
+    background-color: red;
+    color: white;
+}
+
+.pending {
+    background-color: rgb(0, 213, 255); 
+}
+
+/* Section 2 Starts*/

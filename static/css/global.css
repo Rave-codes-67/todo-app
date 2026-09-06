@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(to bottom right, #ED0E23, #FCB990, #FDEDDE);
+    overflow: auto;
+    width: 100%;
+}
