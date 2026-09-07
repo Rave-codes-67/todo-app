@@ -35,11 +35,13 @@ WELCOME_MSGS = [
 USERS = {
     1: {'first-name': "Joseph",
         'last-name': "Paul",
+        'username': 'Rave-2009',
         'email': 'jotextech@gmail.com',
         'password': 'NewJoe@2009'
         }
 }
 
+LOGGED_IN = False
 
 import time, random
 @app.route("/")
@@ -56,42 +58,38 @@ def home():
     global WELCOME_MSGS
     wlc_msg = random.choice(WELCOME_MSGS)
 
-    if "user_id" in session:
+    if "user_id" in session and LOGGED_IN:
         return render_template(
              'index.html',
-             f_name=session.get("user_first_name"),
+             f_name=USERS[session.get("user_id")]['first-name'],
              greeting=greeting,
              lists=TODO_LIST,
              wlc_msg=wlc_msg)
+    elif "user_id" in session and LOGGED_IN is False:
+        session.pop("user_id", None)
     
     return render_template('index.html', f_name="User", greeting=greeting, lists=[], wlc_msg=wlc_msg)
 
-@app.route('/delete_todo', methods=['POST'])
-def delete_todo():
-    target_id = request.form.get('id')
-    global TODO_LIST
-    TODO_LIST = [todo for todo in TODO_LIST if todo['id'] != target_id ]
-
-@app.route('/new-todo', methods=["POST"])
-def new_todo():
-    pass
 
 import re
 import string
 @app.route('/signup', methods=["GET", "POST"])
 def signup_page():
     if request.method != 'POST':
-        form_data = {'first_name': '', 'last_name': '', 'username': '', 'email': '', 'password': ''}
+        form_data = {'first_name': '', 'last_name': '', 'username': '', 'email': ''}
         return render_template('signup-page.html', form_data=form_data)
 
     data = request.form
-    first_name = data.get('first_name', '').strip()
-    last_name = data.get('last_name', '').strip()
-    username = data.get('username', '').strip()
-    email = data.get('email', '').strip()
-    password = data.get('password', '').strip()
-    form_data = {'first_name': first_name, 'last_name': last_name, 'username': username, 'email': email, 'password': password}
+    first_name = data.get('first_name').strip()
+    last_name = data.get('last_name').strip()
+    username = data.get('username').strip()
+    email = data.get('email').strip()
+    password = data.get('password').strip()
+    form_data = {'first_name': first_name, 'last_name': last_name, 'username': username, 'email': email}
     error = ''
+
+    global USERS
+    global LOGGED_IN
 
     while True:
         # First Name check
@@ -117,7 +115,7 @@ def signup_page():
         elif len(username) < 3:
             error = "Invalid Username"
             break
-        elif username in 'Users_db_list':
+        elif username in session or username in [USERS[i]['username'] for i in USERS.keys()]:
             error = "This username exists already"
             break
             
@@ -147,29 +145,30 @@ def signup_page():
         if found is False and error == '':
             error = "Your Password is too weak"
             break
+        elif password == username:
+            error = "Password is same with username"
+            break
+        break
 
     if error:
         return render_template('signup-page.html', error_msg=error, form_data=form_data)
-    else:
-        global USERS
-        last_id = [i for i in USERS.keys()]
-        new_user_id = last_id[-1]+1
+    
+    last_id = [i for i in USERS.keys()]
+    new_user_id = last_id[-1]+1
 
-        USERS[new_user_id] = {'first-name': first_name,
-                        'username': username,
-                        'last-name': last_name,
-                        'email': email,
-                        'password': password
-                                                }
+    USERS[new_user_id] = {'first-name': first_name,
+                    'last-name': last_name,
+                    'username': username,
+                    'email': email,
+                    'password': password
+                                            }
 
-        session.permanent = True
+    session.permanent = True
 
-        session["user_id"] = new_user_id
-        session["user_first_name"] = first_name
-        session["user_last_name"] = last_name
-        session["user_email"] = email
+    session["user_id"] = new_user_id
+    LOGGED_IN = True
 
-        return redirect(url_for(home))
+    return redirect(url_for('home'))
 
 
 @app.route('/signin')
@@ -178,12 +177,23 @@ def signin_page():
 
 @app.route('/logout')
 def logout():
-    session.clear()
-    return redirect(url_for(home))
+    session.pop('user_id', None)
+    return redirect(url_for('home'))
 
 @app.route('/dashboard')
 def account():
     return render_template('pass.html')
+
+@app.route('/delete_todo', methods=['POST'])
+def delete_todo():
+    target_id = request.form.get('id')
+    global TODO_LIST
+    TODO_LIST = [todo for todo in TODO_LIST if todo['id'] != target_id ]
+
+@app.route('/new-todo', methods=["POST"])
+def new_todo():
+    pass
+
 
 if __name__ == "__main__":
     app.run(debug=True)
