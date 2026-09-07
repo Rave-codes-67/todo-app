@@ -42,26 +42,30 @@
     <div class="sign-up-form">
         <p class="create-acc-txt">Create Account</p>
         <p class="extra-text">sign up to continue</p>
-        <form action="/" method="post"></form>
+        <form id="signupForm" action="/signup" method="POST" novalidate>
             <div class="name">
-                <input autocomplete="off" class="type-input f-name" type="text" name="first_name" placeholder="First Name">
-                <input autocomplete="off" class="type-input l-name" type="text" name="last_name" placeholder="Last Name">
+                <input autocomplete="off" class="type-input f-name" type="text" name="first_name" placeholder="First Name" value="{{ form_data.first_name }}" >
+                <input autocomplete="off" class="type-input l-name" type="text" name="last_name" placeholder="Last Name" value="{{ form_data.last_name }}" >
             </div>
-            <input autocomplete="off" class="type-input username" type="text" name="username" placeholder="Username">
-            <input autocomplete="off" class="type-input email" type="email" name="email" placeholder="Email">
+
+            <input autocomplete="off" class="type-input username" type="text" name="username" placeholder="Username" value="{{ form_data.username }}" >
+            <input autocomplete="off" class="type-input email" type="email" name="email" placeholder="Email" value="{{ form_data.email }}" >
+
             <div class="password-con">
-                <input autocomplete="off" class="type-input password" type="password" name="password" placeholder="Password">
-                <button id="togglePassword" aria-label="Toggle password visibility">
+                <input autocomplete="off" class="type-input password" type="password" name="password" placeholder="Password" value="{{ form_data.password }}">
+                <a id="togglePassword" aria-label="Toggle password visibility">
                     <svg class="icon eye-open" xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                     </svg>
-                </button>
+                </a>
             </div>
-        <div class="error-msg-con">
-            <p class="error-msg {{ visibility }}">{{ error_msg }} test</p>
-        </div>
-        <button class="sign-up-button" type="submit">Sign Up</button>
+            {% if error_msg %}
+                <div class="error-msg-con">
+                    <p class="error-msg">{{ error_msg }}</p>
+                </div>
+            {% endif %}
+            <button class="sign-up-button" type="submit">Sign Up</button>
         </form>
 
         <p style="text-align: center; margin: 16px 0;">Already have an account? <a href="/sign_in">Log In</a></p>
@@ -74,24 +78,19 @@
     const icon = document.querySelector('.icon')
 
     togglePassword.addEventListener('click', function () {
-        const type = password.getAttribute('type') ? 'text' : 'password';
-        password.setAttribute('type', type);
-
-        if (icon.classList.contains('eye-open') && type === 'password') {
+        if (icon.classList.contains('eye-open') && password.getAttribute('type') === 'password') {
             password.setAttribute('type', 'text')
+            icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 1-4.243-4.243m4.242 4.242L9.88 9.88"/>`
             icon.classList.remove('eye-open')
             icon.classList.add('eye-closed')
-            icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 1-4.243-4.243m4.242 4.242L9.88 9.88" />`
-        } else {
+        } else if (icon.classList.contains('eye-closed') && password.getAttribute('type') === 'text') {
             password.setAttribute('type', 'password')
-            icon.classList.remove('eye-closed')
-            icon.classList.add('eye-open')
             icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                               <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />`
+            icon.classList.remove('eye-closed')
+            icon.classList.add('eye-open')
         }
     })
-
-    const signUpErrorMsg = document.querySelector(".error_msg")
 
 </script>
 {% endblock %}
