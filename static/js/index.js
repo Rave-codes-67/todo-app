@@ -29,3 +29,30 @@ function inlineChangeStatus(task) {
         }
     })
 }
+
+function NewTaskCon() {
+    const conToHide = document.querySelector('.new-todo-con-con');
+
+
+    if (conToHide.classList.contains('hide-new-todo-con')) {
+        conToHide.classList.remove('hide-new-todo-con');
+        blockScreen('activate');
+    } else {
+        conToHide.classList.add('hide-new-todo-con');
+        blockScreen('remove');
+    };
+};
+
+function blockScreen(choice) {
+    const screenBlocker = document.querySelector('.block-screen-beneath');
+    const noScroll = document.querySelector('.body');
+    
+    if (choice === 'activate') {
+        screenBlocker.classList.add('active'); // Blur Screen
+        noScroll.classList.add('no-scroll'); // Stop Scroll
+        
+    } else if (choice === 'remove') {
+        screenBlocker.classList.remove('active'); // Remove Screen Blur
+        noScroll.classList.remove('no-scroll'); // RE-Activate Scrolling
+    };
+};

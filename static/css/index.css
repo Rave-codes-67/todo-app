@@ -149,10 +149,6 @@ tr {
     box-shadow: 0px 0px 3px 0px black;
 }
 
-.row-checker-dark {
-    background-color: black;
-}
-
 th {
     background-color: rgb(212, 212, 212);
 }
@@ -206,3 +202,124 @@ td:nth-child(5) {
 }
 
 /* Section 2 Starts*/
+.hide-new-todo-con {
+    display: none;
+}
+
+.new-todo-con-con {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: red;
+    z-index: 1001;
+}
+
+.new-todo-con {
+    background-color: white;
+    padding: 30px;
+    border-radius: 25px;
+    box-shadow: 0 0 15px black;
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    right: 35%;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 520px;
+}
+
+
+.create-todo-form {
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+}
+
+
+.create-todo-title {
+    height: 50px;
+    padding-top: 0;
+    padding-bottom: 20px;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    box-shadow: 0 5px 0 black;
+}
+
+.create-todo-title button {
+    position: absolute;
+    left: 0;
+    background-color: white;
+    box-shadow: 0 0 5px black;
+    font-size: 40px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-top: 0;
+    border: none;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    flex: 0 0 10%;
+}
+
+.create-todo-title p {
+    font-size: 35px;
+    font-family: Roboto;
+    text-align: center;
+    flex: 1;
+}
+
+.create-todo-form label {
+    margin-top: 35px;
+    margin-bottom: 10px;
+}
+
+.create-todo-form textarea {
+    resize: none;
+    width: 90%;
+    padding: 5px 5% 5px 5%;
+    height: 67px;
+    border: 2px solid black;
+    border-radius: 16px;
+    margin-bottom: 0;
+
+    font-size: 1.1rem;
+}
+
+.create-todo-form input {
+    width: 90%;
+    padding: 0 5% 0 5%;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 16px;
+}
+
+/* Blur, Freeze and Stop Scrolling on the Body [for popups] */
+.block-screen-beneath {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    
+    display: none;
+}
+.active {
+    display: block;
+}
+body.no-scroll {
+    overflow: hidden;
+}

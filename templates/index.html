@@ -32,19 +32,19 @@
         </div>
 
         <div class="tasks">
-            <a href="{{ url_for('todo.new_todo')}}"></a><button class="n-task">New Todo</button>
+            <button onclick="NewTaskCon()" class="n-task">New Todo</button>
             <button class="e-task">Edit Task</button>
             <button class="chg-status">Change Task Status</button>
             <button class="d-task">Delete Task</button>
         </div>
 
-        <div class="new-todo-con">
-            <div class="new-todo-title">
-                <button>X</button>
-                <p>Create Todo</p>
-            </div>
-            <div class="create-todo-form">
-                <form action="url_for('todo.new_todo')" method="post">
+        <div class="new-todo-con-con hide-new-todo-con">
+            <div class="new-todo-con">
+                <div class="create-todo-title">
+                    <button onclick="NewTaskCon()">&times;</button>
+                    <p>Create Todo</p>
+                </div>
+                <form class="create-todo-form" action="url_for('todo.new_todo')" method="post">
                     <label for="title">Title: </label>
                     <input placeholder="eg. Edit Vfx in Client Irl Video" type="text" name="title" id="title">
                     <label for="details">Details: </label>
@@ -57,8 +57,8 @@
                         id="deadline"
                         min="">
                 </form>
+                <div><button>Create</button></div>
             </div>
-            <div></div>
         </div>
 
         <div id="todos" class="todo-text-con">
@@ -81,7 +81,7 @@
             <table>
                 <tbody>
                     {% for each in lists %}
-                        <tr class="checker" id="{{ loop.index }}">
+                        <tr>
                             <td>{{ loop.index }}</td>
                             <td>{{ each['title'] }}</td>
                             <td>{{ each['detail'] }}</td>
@@ -93,5 +93,6 @@
             </table>
         </div>
     </main>
+    <div class="block-screen-beneath"></div>
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}

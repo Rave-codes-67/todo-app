@@ -15,6 +15,8 @@ class globalStorage:
                                     'password': 'NewJoe@2009'
                                 }
                     }
+
+# Defined this as variable here so i can easily import from outside with just the name of the variable
 TodoList = globalStorage().lists
 Users = globalStorage().users
 df_id = globalStorage().default_id

@@ -42,5 +42,5 @@ def home():
              lists=todo_lists,
              wlc_msg=wlc_msg,
              logged_in=True)
-    
-    return render_template('index.html', f_name="User", greeting=greeting, lists=TodoList.get('user-00001'), wlc_msg=wlc_msg, logged_in=False)
+    else:
+        return render_template('index.html', f_name="User", greeting=greeting, lists=TodoList.get('user-00001'), wlc_msg=wlc_msg, logged_in=False)
