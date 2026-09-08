@@ -20,7 +20,7 @@ def signin_page():
 @app.route('/logout')
 def logout():
     session.pop('user_id', None)
-    return redirect(url_for('app_factory.routes.main.home'))
+    return redirect(url_for('main.home'))
 
 @app.route('/dashboard')
 def account():
@@ -43,20 +43,29 @@ def inlineChangeStatus():
     data = request.get_json()
     task_id = int(data.get('id'))
     task_status = data.get('status')
-    if 'user_id' in session:
-        TodoList.get(session.get('user_id'), [])
 
     if task_status == statuses[0]:
-        task_status = statuses[1]
+        new_status = statuses[1]
     elif task_status == statuses[1]:
-        task_status = statuses[2]
+        new_status = statuses[2]
     elif task_status == statuses[2]:
-        task_status = statuses[0]
+        new_status = statuses[0]
     else:
-        task_status = task_status
+        new_status = task_status
 
 
+    lists = []
+    if 'user_id' in session:
+        lists = TodoList.get(session.get('user_id'))
+    else:
+        lists = TodoList.get('user-00001')
+
+    for item in lists:
+        if item['id'] == task_id:
+            item['status'] = new_status
+            break
+                
     return jsonify({
         "success": True,
-        "new_status": TodoList[task_id]['status']
+        "new_status": new_status
     })

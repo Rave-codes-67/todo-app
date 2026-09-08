@@ -5,7 +5,9 @@ import os
 
 
 def create_app(secret_key):
-    app = Flask(__name__)
+    app = Flask(__name__,
+                template_folder='../templates',
+                static_folder='../static')
 
     load_dotenv()
 

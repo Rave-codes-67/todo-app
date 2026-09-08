@@ -9,7 +9,7 @@
     <nav class="navbar">
         <!-- Site Logo -->
         <div class="nav-logo">
-            <a href="url_for('app_factory.routes.main.home')">Rave's Todo App</a>
+            <a href="url_for(main.home')">Rave's Todo App</a>
         </div>
 
         <!-- Nav Link -->
@@ -32,7 +32,7 @@
         </div>
 
         <div class="tasks">
-            <a href="{{ url_for('app_factory.routes.todo.new_todo')}}"></a><button class="n-task">New Todo</button>
+            <a href="{{ url_for('todo.new_todo')}}"></a><button class="n-task">New Todo</button>
             <button class="e-task">Edit Task</button>
             <button class="chg-status">Change Task Status</button>
             <button class="d-task">Delete Task</button>
@@ -44,7 +44,7 @@
                 <p>Create Todo</p>
             </div>
             <div class="create-todo-form">
-                <form action="url_for('app_factory.routes.todo.new_todo')" method="post">
+                <form action="url_for('todo.new_todo')" method="post">
                     <label for="title">Title: </label>
                     <input placeholder="eg. Edit Vfx in Client Irl Video" type="text" name="title" id="title">
                     <label for="details">Details: </label>

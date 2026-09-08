@@ -7,9 +7,9 @@ class globalStorage:
                  ]
             }
         self.users = {
-                    "user-00001": {'first-name': "Joseph",
-                                    'last-name': "Paul",
-                                    'username': 'Rave-2009',
+                    "user-00001": {'first-name': "User",
+                                    'last-name': "LastName",
+                                    'username': 'fd8f8g88ds9fs98gjhs89f0h09j0sgg9h-0j98sa97',
                                     'email': 'jotextech@gmail.com',
                                     'password': 'NewJoe@2009'
                                 }

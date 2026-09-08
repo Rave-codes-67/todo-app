@@ -8,7 +8,7 @@ import re
 import string
 @accs_bp.route('/signup', methods=["GET", "POST"])
 def signup_page():
-    from global_storage import Users
+    from app_factory.global_storage import Users
     if request.method != 'POST':
         form_data = {'first_name': '', 'last_name': '', 'username': '', 'email': ''}
         return render_template('signup-page.html', form_data=form_data)
@@ -44,7 +44,10 @@ def signup_page():
             error = "Username is Required"
             break
         elif len(username) < 3:
-            error = "Invalid Username"
+            error = "Username is too short"
+            break
+        elif len(username) > 20:
+            error = "Username is too long"
             break
         elif username in session or username in [Users[i]['username'] for i in Users.keys()]:
             error = "This username exists already"
@@ -101,4 +104,17 @@ def signup_page():
     session["user_id"] = new_user_id
     session["user_first_name"] = first_name
 
-    return redirect(url_for('app_factory.routes.main.home'))
+    return redirect(url_for('main.home'))
+
+@accs_bp.route('/signin')
+def signin_page():
+    pass
+
+@accs_bp.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    return redirect(url_for('main.home'))
+
+@accs_bp.route('/dashboard')
+def account():
+    return render_template('pass.html')
