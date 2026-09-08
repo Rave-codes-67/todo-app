@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, jsonify, request, url_for, redirect, session
+from app_factory.global_storage import TodoList
 
 accs_bp = Blueprint('accounts', __name__)
 
@@ -92,6 +93,7 @@ def signup_page():
     new_digit_id = int(last_id.split('user-0000')[-1])+1
     new_user_id = f"user-0000{new_digit_id}"
 
+    # Add Users to database {Replace with actual db}
     Users[new_user_id] = {'first-name': first_name,
                     'last-name': last_name,
                     'username': username,
@@ -101,8 +103,12 @@ def signup_page():
 
     session.permanent = True
 
+    # Store some of the users data in session for easy access and verification that there is an active logged in account
     session["user_id"] = new_user_id
     session["user_first_name"] = first_name
+
+    # Generate an empty todo-list stored in db with the user's detail
+    TodoList[new_user_id] = []
 
     return redirect(url_for('main.home'))
 
@@ -118,3 +124,4 @@ def logout():
 @accs_bp.route('/dashboard')
 def account():
     return render_template('pass.html')
+

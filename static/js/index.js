@@ -1,4 +1,12 @@
+// const rowIdentifyer = document.querySelector('.checker');
+// const rowIndex = Number(rowIdentifyer.id);
 
+// if (rowIndex % 2 === 0) {
+//     rowIndex.classList.add('row-checker-dark');
+// } 
+
+
+// In-line td status changer
 function inlineChangeStatus(task) {
     const taskID = task.id
     const taskStatus = task.className

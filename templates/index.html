@@ -81,7 +81,7 @@
             <table>
                 <tbody>
                     {% for each in lists %}
-                        <tr>
+                        <tr class="checker" id="{{ loop.index }}">
                             <td>{{ loop.index }}</td>
                             <td>{{ each['title'] }}</td>
                             <td>{{ each['detail'] }}</td>
