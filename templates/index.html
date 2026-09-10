@@ -6,24 +6,26 @@
 {% endblock %}
 
 {% block content %}
-    <nav class="navbar">
-        <!-- Site Logo -->
-        <div class="nav-logo">
-            <a href="url_for(main.home')">Rave's Todo App</a>
-        </div>
+    <header>
+        <nav class="navbar">
+            <!-- Site Logo -->
+            <div class="nav-logo">
+                <a href="url_for(main.home')">Rave's Todo App</a>
+            </div>
 
-        <!-- Nav Link -->
-        <ul class="nav-links">
-            <li><a href="/">Other Projects</a></li>
-            <li><a href="/">Github</a></li>
-            {% if logged_in == False %}
-                <li><a href="/signup">Sign UP</a></li>
-            {% else %}
-                <li><a href="/account">Account</a></li>
-                <li><a href="#todos">Todos</a></li>
-            {% endif %}
-        </ul>
-    </nav>
+            <!-- Nav Link -->
+            <ul class="nav-links">
+                <li><a href="/">Source Code</a></li>
+                <li><a href="/">My Github</a></li>
+                {% if logged_in == False %}
+                    <li><a href="/signup">Sign UP</a></li>
+                {% else %}
+                    <li><a href="/account">Account</a></li>
+                    <li><a href="#todos">Todos</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
 
     <main>
         <div class="welcome-div">
@@ -32,16 +34,16 @@
         </div>
 
         <div class="tasks">
-            <button onclick="NewTaskCon()" class="n-task">New Todo</button>
-            <button class="e-task">Edit Task</button>
+            <button onclick="openCon('newTodo')" class="n-task">New Todo</button>
+            <button onclick="openCon('editTodo')" class="e-task">Edit Task</button>
             <button class="chg-status">Change Task Status</button>
             <button class="d-task">Delete Task</button>
         </div>
 
-        <div class="new-todo-con-con hide-new-todo-con">
+        <div class="newTodo closableCon new-todo-con-con hide-con">
             <div class="new-todo-con">
-                <div class="create-todo-title">
-                    <button onclick="NewTaskCon()">&times;</button>
+                <div class="create-todo-form-title">
+                    <button onclick="closeCon('newTodo')">&times;</button>
                     <p>Create Todo</p>
                 </div>
                 <form class="create-todo-form" action="url_for('todo.new_todo')" method="post">
@@ -49,7 +51,7 @@
                     <input placeholder="eg. Edit Vfx in Client Irl Video" type="text" name="title" id="title">
                     <label for="details">Details: </label>
                     <textarea name="details"
-                        placeholder="eg. Edit vfx in 2:00 - 5:00 of client Irl china tour clip using rotoscoping in After Effects."
+                        placeholder="eg. Edit vfx in the 3rd minute of client Irl china tour clip using rotoscoping in After Effects."
                         id="details"></textarea>
                     <label for="deadline">Due-Date: </label>
                     <input type="date"
@@ -57,7 +59,7 @@
                         id="deadline"
                         min="">
                 </form>
-                <div><button>Create</button></div>
+                <div class="create-todo-form-btn-con"><button class="create-todo-form-btn">Create</button></div>
             </div>
         </div>
 
